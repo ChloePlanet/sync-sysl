@@ -1,8 +1,8 @@
 name: Sync Repo
 
-on:
-  schedule:
-  - cron:  "0 14 * * 1"
+on: [pull_request]
+  # schedule:
+  # - cron:  "0 14 * * 1"
 
 jobs:
   repo-sync:
