@@ -1,0 +1,23 @@
+name: Sync Repo
+
+on:
+  schedule:
+  - cron:  "0 14 * * 1"
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: sync master branch
+      uses: anz-bank/github-sync@master
+      with:
+        workflow_filename: "sync-repo.yml"
+        source_repo: https://${{ secrets.SYNC_ACCESS_TOKEN }}@${{ secrets.SYNC_SRC_REPO }}.git
+        source_branch: "master"
+        destination_branch: "master"
+        github_token: ${{ secrets.SYNC_ACCESS_TOKEN }}
+        github_email: "sysl.usr@gmail.com"
+        github_name: "SyslBot"
+        tags: true
