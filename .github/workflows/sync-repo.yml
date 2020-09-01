@@ -1,8 +1,10 @@
 name: Sync Repo
 
 on:
-  schedule:
-    - cron: '45 * * * *'
+  push:
+    branches:
+      - sync-repo
+  # schedule:
   # - cron:  "0 14 * * 1"
 
 jobs:
