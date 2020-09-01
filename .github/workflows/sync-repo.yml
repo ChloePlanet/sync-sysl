@@ -2,7 +2,7 @@ name: Sync Repo
 
 on:
   schedule:
-    - cron: '35 * * * *'
+    - cron: '45 * * * *'
   # - cron:  "0 14 * * 1"
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
       with:
         source_repo: "https://${{ secrets.SYNC_ACCESS_TOKEN }}@${{ secrets.SYNC_SRC_REPO }}.git"
         source_branch: "master"
-        destination_repo: "https://${{ secrets.SYNC_ACCESS_TOKEN }}@github.com/ChloePlanet/sync-sysl.git"
+        destination_repo: "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         destination_branch: "master"
 
     - name: repo-sync
@@ -22,12 +22,8 @@ jobs:
       with:
         source_repo: "https://${{ secrets.SYNC_ACCESS_TOKEN }}@${{ secrets.SYNC_SRC_REPO }}.git"
         source_branch: "refs/tags/*"
-        destination_repo: "https://${{ secrets.SYNC_ACCESS_TOKEN }}@github.com/ChloePlanet/sync-sysl.git"
+        destination_repo: "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         destination_branch: "refs/tags/*"
-
-# on: [pull_request]
-#   # schedule:
-#   # - cron:  "0 14 * * 1"
 
 # jobs:
 #   repo-sync:
