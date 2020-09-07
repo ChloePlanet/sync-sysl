@@ -1,9 +1,8 @@
 name: Sync Repo
 
 on:
-  push:
-    branches:
-      - sync-repo
+  repository_dispatch:
+    types: [sync]
 
 jobs:
   repo-sync:
