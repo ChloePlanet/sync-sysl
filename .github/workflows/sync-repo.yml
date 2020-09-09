@@ -17,9 +17,4 @@ jobs:
     #     destination_branch: "master"
 
     - name: sync tags
-      uses: ChloePlanet/git-sync@master
-      with:
-        source_repo: "https://${{ secrets.SYNC_ACCESS_TOKEN }}@${{ secrets.SYNC_SRC_REPO }}.git"
-        source_branch: "refs/tags/0.0.4"
-        destination_repo: "https://$GITHUB_ACTOR:${{ secrets.SYNC_ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY"
-        destination_branch: "refs/tags/0.0.4"
+      run: ./git-sync.sh "https://${{ secrets.SYNC_ACCESS_TOKEN }}@${{ secrets.SYNC_SRC_REPO }}.git" "https://$GITHUB_ACTOR:${{ secrets.SYNC_ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY" "0.0.4" "master"
