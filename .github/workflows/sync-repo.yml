@@ -1,25 +1,25 @@
 name: Sync Repo
 
 on:
-  workflow_dispatch
+  [workflow_dispatch, push]
 
 jobs:
   repo-sync:
     runs-on: ubuntu-latest
     steps:
-    - name: sync master branch
-      uses: wei/git-sync@v2
-      with:
-        source_repo: "https://${{ secrets.SYNC_ACCESS_TOKEN }}@${{ secrets.SYNC_SRC_REPO }}.git"
-        source_branch: "master"
-        # SYNC_ACCESS_TOKEN permissions: read, workflow
-        destination_repo: "https://$GITHUB_ACTOR:${{ secrets.SYNC_ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY"
-        destination_branch: "master"
+    # - name: sync master branch
+    #   uses: ChloePlanet/git-sync@master
+    #   with:
+    #     source_repo: "https://${{ secrets.SYNC_ACCESS_TOKEN }}@${{ secrets.SYNC_SRC_REPO }}.git"
+    #     source_branch: "master"
+    #     # SYNC_ACCESS_TOKEN permissions: read, workflow
+    #     destination_repo: "https://$GITHUB_ACTOR:${{ secrets.SYNC_ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY"
+    #     destination_branch: "master"
 
     - name: sync tags
-      uses: wei/git-sync@v2
+      uses: ChloePlanet/git-sync@master
       with:
         source_repo: "https://${{ secrets.SYNC_ACCESS_TOKEN }}@${{ secrets.SYNC_SRC_REPO }}.git"
-        source_branch: "refs/tags/*"
+        source_branch: "refs/tags/0.0.1"
         destination_repo: "https://$GITHUB_ACTOR:${{ secrets.SYNC_ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY"
-        destination_branch: "refs/tags/*"
+        destination_branch: "refs/tags/0.0.1"
