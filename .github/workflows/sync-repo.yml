@@ -20,6 +20,6 @@ jobs:
       uses: ChloePlanet/git-sync@master
       with:
         source_repo: "https://${{ secrets.SYNC_ACCESS_TOKEN }}@${{ secrets.SYNC_SRC_REPO }}.git"
-        source_branch: "refs/tags/0.0.1"
+        source_branch: "0.0.2"
         destination_repo: "https://$GITHUB_ACTOR:${{ secrets.SYNC_ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY"
-        destination_branch: "refs/tags/0.0.1"
+        destination_branch: "0.0.2"
