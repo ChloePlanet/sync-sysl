@@ -15,6 +15,8 @@ jobs:
     #     # SYNC_ACCESS_TOKEN permissions: read, workflow
     #     destination_repo: "https://$GITHUB_ACTOR:${{ secrets.SYNC_ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY"
     #     destination_branch: "master"
+    - name: Check out code
+      uses: actions/checkout@v2
 
     - name: sync tags
       run: ./git-sync.sh "https://${{ secrets.SYNC_ACCESS_TOKEN }}@${{ secrets.SYNC_SRC_REPO }}.git" "https://$GITHUB_ACTOR:${{ secrets.SYNC_ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY" "0.0.4" "master"
